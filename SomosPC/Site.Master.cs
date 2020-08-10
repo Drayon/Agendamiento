@@ -7,11 +7,13 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using System.Configuration;
 
 namespace SomosPC
 {
     public partial class SiteMaster : MasterPage
     {
+        public static string Coneccion { get; } = ConfigurationManager.ConnectionStrings["Coneccion"].ConnectionString;
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -69,12 +71,33 @@ namespace SomosPC
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["PERFIL"].ToString() == "TRABAJOS")
+            {
+                menuadmin.Visible = false;
+                menudespacho.Visible = false;
+                menupedido.Visible = false;
+                menufinalizados.Visible = false;
+            }
+            lblUsuario.Text = Session["USUARIO"].ToString().ToUpper();
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+        }
+
+        protected void CerrarSession_Click(object sender, ImageClickEventArgs e)
+        {
+            if (e.X == 0)
+            {
+
+            }
+            else
+            {
+                Session.RemoveAll();
+                Session.Abandon();
+                Response.Redirect("Login.aspx");
+            }
         }
     }
 

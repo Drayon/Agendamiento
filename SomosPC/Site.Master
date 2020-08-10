@@ -7,25 +7,44 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - Mi aplicación ASP.NET</title>
+    <title> Somos PC</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- font awesome-->
+
+
+    <link href="Content/Site.css" rel="stylesheet" />
+
 
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-
+    <link href="css/blog-single-style.css" rel="stylesheet" />
+    <link href="css/blog-style.css" rel="stylesheet" />
+    <link href="css/contact-style.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/service-style.css" rel="stylesheet" />
+    <script src="js/script.js"></script>
+    <script src="js/map.js"></script>
+    
+    <style type="text/css">
+        .auto-style1 {
+            width: 151px;
+            height: 25px;
+        }
+    </style>
+    
 </head>
 <body>
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
-                <%--Para obtener más información sobre cómo agrupar scripts en ScriptManager, consulte http://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Scripts de marco--%>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
                 <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="respond" />
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -35,7 +54,7 @@
                 <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
                 <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
                 <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Scripts del sitio--%>
+                <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
 
@@ -47,41 +66,33 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/">Nombre de la aplicación</a>
+                    <a class="navbar-brand" runat="server" >
+                        <img src="img/instagram.png" class="auto-style1" width="100px" />Respaldos Chile</a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Inicio</a></li>
-                        <li><a runat="server" href="~/About">Acerca de</a></li>
-                        <li><a runat="server" href="~/Contact">Contacto</a></li>
+               <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right" style="margin-top: 10px">
+                        <li><a runat="server" id="menutrabajador" href="~/Default">Producción</a></li>
+                        <li><a runat="server" id="menupedido"  href="~/Pedidos">Pedidos</a></li>
+                        <li><a runat="server" id="menuadmin" href="~/Admin">Trabajos</a></li>
+                        <li><a runat="server" id="menudespacho" href="~/Despacho">Despacho</a></li>
+                             <li><a runat="server" id="menufinalizados" href="~/Finalizados">Finalizados</a></li>
+                         <div style="float: left; margin-left: 200px; margin-top: 8px; color: #ffffff; font-size: large; text-align: right">
+                            <img src="img/usuario.png" style="width: 50px; padding-bottom: 18px" /><asp:Label ID="lblUsuario" runat="server" Text="lblUsuario" Font-Size="X-Large"></asp:Label>&nbsp;&nbsp;<asp:ImageButton ID="CerrarSession" OnClick="CerrarSession_Click" runat="server"  Width="30px" ImageUrl="~/img/cerrarSession.png" />
+                        
+                        </div>
                     </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Registrarse</a></li>
-                                <li><a runat="server" href="~/Account/Login">Iniciar sesión</a></li>
-                            </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Cerrar sesión" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
                 </div>
             </div>
         </div>
-        <div class="container body-content">
+        <div class="container body-content" >
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
             <hr />
             <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - Mi aplicación ASP.NET</p>
+                <p>&copy; <%: DateTime.Now.Year %> - Respaldos Chile</p>
             </footer>
         </div>
+
     </form>
 </body>
 </html>
